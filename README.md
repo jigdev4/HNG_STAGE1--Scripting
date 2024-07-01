@@ -1,55 +1,55 @@
-# HNG11 Task 1: User Management Script
+# Automating user and group creation: HNG11 Task 1
 
-This project is part of HNG11's DevOps track, focusing on creating a user management script for Linux environments. The script automates the creation of user accounts, assignment of groups, and password management based on input from a text file.
+This script automates the creation of user accounts and their associated groups on a Linux system. It reads user data from an input file and logs all activities.
 
 ## Features
-
-- **Automated User Creation**: Creates Linux user accounts with home directories.
-- **Group Management**: Assigns users to primary and additional groups specified in the input file.
-- **Password Generation**: Generates random passwords and securely stores them.
-- **Logging**: Logs all actions and errors to `/var/log/user_management.log`.
-- **Security**: Ensures secure permissions for the password file (`/var/secure/user_passwords.csv`).
+- **Automated User Creation**: Automate user account creation with home directories, saving you time and effort..
+- **Group Management**: Easily assign users to primary and additional groups based on your data file.
+- **Password Generation**:  Generate strong, random passwords for each user and store them securely with restricted access.
+- **Detailed Logging**:Track all script actions and potential errors for comprehensive auditing in the /var/log/user_management.log file`.
 
 ## Requirements
 
 - Linux environment (tested on Ubuntu 20.04 LTS)
-- Bash shell
-- `openssl` for password generation
+- The script must be run as the root user.
+- The input file must be in the format: `username;group1,group2,...`
+- `openssl` must be installed to generate random passwords.
 
 ## Usage
-
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/hng11-task2.git
-   cd hng11-task2
+   git clone https://github.com/your-username/HNG_SATGE1--Scripting
+   cd HNG_SATGE1--Scripting
    ```
 
-2. **Prepare Input File**: Create a text file (`input_file.txt`) with each line formatted as `username; primary_group,additional_groups`.
+2. **Save the script to a file, e.g., `create_users.sh`, and make it executable:**
+    ```bash
+    chmod +x create_users.sh
+    ```
 
-   Example:
-   ```
-   user1; group1,group2
-   user2; group3
-   ```
+3. **Prepare your input file, e.g., `User_Data.txt`, in the following format:**
+    ```
+    username1;group1,group2
+    username2;group3,group4
+    ```
 
-3. **Run the Script**:
-   ```bash
-   bash create_users.sh input_file.txt
-   ```
+4. **Run the script with the input file as an argument:**
+```bash
+sudo ./create_users.sh User_Data.txt
+  ```
 
-4. **Verify Output**: Check `/var/log/user_management.log` for detailed logs on user creation and group assignments.
+5. **Logs**
+User creation activities are logged in /var/log/user_management.log.
+Generated passwords are stored securely in /var/secure/user_passwords.txt.
+```bash
+cat /var/log/user_management.log
+cat var/secure/user_passwords.txt
+  ```
+## Notes 
+The script will skip users that already exist and log the activity.
+Ensure the input file is correctly formatted to avoid errors during user creation
 
-## Example
 
-Suppose `input_file.txt` contains:
-```
-destiny; sudo,dev,www-data
-testuser; dev
-```
-
-Running `sudo ./create_users.sh input_file.txt` will:
-- Create user `destiny` with primary group `sudo` and additional groups `dev` and `www-data`.
-- Create user `testuser` with primary group `dev`.
 
 ## Contributions
 
