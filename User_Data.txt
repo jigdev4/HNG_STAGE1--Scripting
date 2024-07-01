@@ -1,0 +1,9 @@
+light; sudo,dev,www-data
+idimma; sudo
+mayowa; dev,www-data
+adeola; finance,ops
+tope; quality
+femi; marketing
+bukky; hr
+emeka; it,security
+
